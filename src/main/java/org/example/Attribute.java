@@ -27,23 +27,5 @@ public class Attribute {
         // Random Phone_call
         this.Phone_call = rand.nextBoolean();
     }
-
-    private void randomizeAttributes() {
-        Random rand = new Random();
-        String [] hair = {"Black","Brown","Grey","White"};
-        String [] eye = {"Black","Brown","Blue","Green"};
-        String [] mouth = {"Big","Slim","Thin"};
-
-        // Random hair colour
-        this.hair = hair[rand.nextInt(hair.length)];
-        // Random eye colour
-        this.eye = eye[rand.nextInt(eye.length)];
-        // Random mouth size
-        this.mouth = mouth[rand.nextInt(mouth.length)];
-        // Random Id_card
-        this.Id_card = rand.nextBoolean();
-        // Random Phone_call
-        this.Phone_call = rand.nextBoolean();
-    }
 }
 
