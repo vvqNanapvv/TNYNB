@@ -4,6 +4,9 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class Action {
+    public static Object Gate;
+    public static Object Check;
+
     static Scanner sc = new Scanner(System.in);
 
     static class Node {
@@ -39,16 +42,22 @@ public class Action {
             tail.next = head;
         }
 
-        // Inserting a node at the beginning of the list
-        public void prepend(Method data) {
-            Node newNode = new Node(data);
-            newNode.next = head;
-            tail.next = newNode;
-            head = newNode;
+        // Moving to the next node
+        public void moveNext() {
+            Node current = head;
+            head = head.next;
+            current.next = current.next.next;
         }
 
-        public Node Pop() {
-            return head;
+        // Display the list
+        public void display() {
+            Node current = head;
+            if (head == null) {
+                System.out.println("List is empty.");
+            }
+            else{
+                System.out.print(current);
+            }
         }
     }
 
@@ -82,12 +91,10 @@ public class Action {
         return "";
     }
 
-    public static Object Check() {
-        Human.John John = new Human.John();
-        System.out.println(John.getName());
-        final String hair = John.getHair();
+    public static Objects Check() {
+        Human.human h = new Human.human();
 
-        return hair;
+        return h.John();
     }
 }
 

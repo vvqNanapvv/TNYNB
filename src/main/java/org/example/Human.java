@@ -9,21 +9,46 @@ public class Human {
     static String [] mouth = {"Big","Slim","Thin"};
     static String [] hair = {"Black","Brown","Grey","White"};
 
-    public static class John extends Attribute{
-        public John() {
+    public static class human extends Attribute{
+        public Objects John() {
             setName("John Smith");
-            setHair(setHair(hair[rand.nextInt(hair.length)]));
-            setMouth(mouth[rand.nextInt(mouth.length)]);
-            setEye(eye[rand.nextInt(eye.length)]);
-        }
-    }
+            System.out.println(getName());
 
-    public static class Kyle extends Attribute{
-        public Kyle() {
-            setName("Kyle Tenon");
-            setHair(setHair(hair[rand.nextInt(hair.length)]));
+            setHair(hair[rand.nextInt(hair.length)]);
+            System.out.println("Hair: "+getHair());
+
             setMouth(mouth[rand.nextInt(mouth.length)]);
+            System.out.println("Mouth: "+getMouth());
+
             setEye(eye[rand.nextInt(eye.length)]);
+            System.out.println("Eye: "+getEye());
+
+            setId_card(rand.nextBoolean());
+            if (isId_card()){
+                System.out.println("Id card Check");
+            }
+            else System.out.println("Id card Not Check");
+            return null;
+        }
+        public Objects Kyle() {
+            setName("Kyle Tenon");
+            System.out.println(getName());
+
+            setHair(hair[rand.nextInt(hair.length)]);
+            System.out.println("Hair: "+getHair());
+
+            setMouth(mouth[rand.nextInt(mouth.length)]);
+            System.out.println("Mouth: "+getMouth());
+
+            setEye(eye[rand.nextInt(eye.length)]);
+            System.out.println("Eye: "+getEye());
+
+            setId_card(rand.nextBoolean());
+            if (isId_card()){
+                System.out.println("Id card Check");
+            }
+            else System.out.println("Id card Not Check");
+            return null;
         }
     }
 }

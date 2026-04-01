@@ -32,9 +32,8 @@ public class Attribute {
     public String getHair() {
         return hair;
     }
-    public String setHair(String hair) {
+    public void setHair(String hair) {
         this.hair = hair;
-        return hair;
     }
 
     public boolean isId_card() {
