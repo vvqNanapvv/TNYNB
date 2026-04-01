@@ -1,5 +1,4 @@
 package org.example;
-import java.util.*;
 
 public class Attribute {
     private String name;
@@ -9,23 +8,47 @@ public class Attribute {
     private boolean Id_card;
     private boolean Phone_call;
 
-    public void Character(String name){
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
         this.name = name;
-        Random rand = new Random();
-        String [] hair = {"Black","Brown","Grey","White"};
-        String [] eye = {"Black","Brown","Blue","Green"};
-        String [] mouth = {"Big","Slim","Thin"};
+    }
 
-        // Random hair colour
-        this.hair = hair[rand.nextInt(hair.length)];
-        // Random eye colour
-        this.eye = eye[rand.nextInt(eye.length)];
-        // Random mouth size
-        this.mouth = mouth[rand.nextInt(mouth.length)];
-        // Random Id_card
-        this.Id_card = rand.nextBoolean();
-        // Random Phone_call
-        this.Phone_call = rand.nextBoolean();
+    public String getMouth() {
+        return mouth;
+    }
+    public void setMouth(String mouth) {
+        this.mouth = mouth;
+    }
+
+    public String getEye() {
+        return eye;
+    }
+    public void setEye(String eye) {
+        this.eye = eye;
+    }
+
+    public String getHair() {
+        return hair;
+    }
+    public String setHair(String hair) {
+        this.hair = hair;
+        return hair;
+    }
+
+    public boolean isId_card() {
+        return Id_card;
+    }
+    public void setId_card(boolean id_card) {
+        Id_card = id_card;
+    }
+
+    public boolean isPhone_call() {
+        return Phone_call;
+    }
+    public void setPhone_call(boolean phone_call) {
+        Phone_call = phone_call;
     }
 }
 
