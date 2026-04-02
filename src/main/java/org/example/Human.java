@@ -2,14 +2,13 @@ package org.example;
 
 import java.util.*;
 
-public class Human {
+public class Human extends Attribute{
     static Random rand = new Random();
 
     static String [] eye = {"Black","Brown","Blue","Green"};
     static String [] mouth = {"Big","Slim","Thin"};
     static String [] hair = {"Black","Brown","Grey","White"};
 
-    public static class human extends Attribute{
         public Objects John() {
             setName("John Smith");
             System.out.println(getName());
@@ -26,8 +25,7 @@ public class Human {
             setId_card(rand.nextBoolean());
             if (isId_card()){
                 System.out.println("Id card Check");
-            }
-            else System.out.println("Id card Not Check");
+            } else System.out.println("Id card Not Check");
             return null;
         }
         public Objects Kyle() {
@@ -49,6 +47,6 @@ public class Human {
             }
             else System.out.println("Id card Not Check");
             return null;
-        }
+
     }
 }

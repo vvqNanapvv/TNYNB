@@ -13,8 +13,7 @@ public class Main {
         Human.human h = new Human.human();
         h.John();
         h.Kyle();
-
-
+        //just placeholder
 
         Scanner sc = new Scanner(System.in);
 
