@@ -11,6 +11,7 @@ public class Attribute {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -18,6 +19,7 @@ public class Attribute {
     public String getMouth() {
         return mouth;
     }
+
     public void setMouth(String mouth) {
         this.mouth = mouth;
     }
@@ -25,6 +27,7 @@ public class Attribute {
     public String getEye() {
         return eye;
     }
+
     public void setEye(String eye) {
         this.eye = eye;
     }
@@ -32,6 +35,7 @@ public class Attribute {
     public String getHair() {
         return hair;
     }
+
     public void setHair(String hair) {
         this.hair = hair;
     }
@@ -39,6 +43,7 @@ public class Attribute {
     public boolean isId_card() {
         return Id_card;
     }
+
     public void setId_card(boolean id_card) {
         Id_card = id_card;
     }
@@ -46,8 +51,8 @@ public class Attribute {
     public boolean isPhone_call() {
         return Phone_call;
     }
+
     public void setPhone_call(boolean phone_call) {
         Phone_call = phone_call;
     }
 }
-
