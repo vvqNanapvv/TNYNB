@@ -47,6 +47,5 @@ public class Human extends Attribute{
             }
             else System.out.println("Id card Not Check");
             return null;
-
     }
 }

@@ -6,21 +6,21 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        Action.Cll cll = new Action.Cll();
-        cll.append((Method) Action.Gate);
-        cll.display();
-
         Human h = new Human();
         h.John();
         h.Kyle();
-        //just placeholder
+        //just placeholder for now
+
+        Action.Cll cll = new Action.Cll();
+        cll.append((Method) Action.Gate);
+        cll.append((Method) Action.Check(h)); // not sure what this'll do honestly :/
 
         Scanner sc = new Scanner(System.in);
 
         while (true) {
             System.out.println("\n--- Action Menu ---");
-            System.out.println("1. Door");
-            System.out.println("2. Check");
+            System.out.println("1. Next");
+            System.out.println("2. Display");
             System.out.println("3. Exit");
             System.out.print("Enter choice: ");
 
@@ -34,10 +34,10 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    Action.Gate();
+                    cll.moveNext();
                     break;
                 case 2:
-                    Action.Check();
+                    cll.display();
                     break;
                 case 3:
                     System.out.println("Exiting...");

@@ -6,23 +6,23 @@ import java.util.*;
 public class Action {
     public static Object Gate;
     public static Object Check;
+    //Object Methods
 
     static Scanner sc = new Scanner(System.in);
 
-    static class Node {
-        Method data;
-        Node next;
+    public static class Cll {
+        static class Node {
+            Method data;
+            Node next;
 
-        public Node(Method data) {
-            this.data = data;
-            this.next = null;
+            public Node(Method data) {
+                this.data = data;
+                this.next = null;
+            }
         }
-    }
 
-    static class Cll {
         private Node head;
         private Node tail;
-
         public Cll() {
             head = null;
             tail = null;
@@ -43,33 +43,33 @@ public class Action {
         }
 
         // Moving to the next node
-        public void moveNext() {
+        public String moveNext() {
             Node current = head;
             head = head.next;
             current.next = current.next.next;
+
+            return head.data.toString();
         }
 
         // Display the list
-        public void display() {
+        public Node display() {
             Node current = head;
-            if (head == null) {
-                System.out.println("List is empty.");
+                if (head == null) {
+                    System.out.println("List is empty.");
+            }   else {
+                    return current;
             }
-            else{
-                System.out.print(current);
-            }
+            return null;
         }
-    }
-
+}
 
     public static Object Door() {
         System.out.print("Open / Close: ");
         String act = sc.nextLine();
-        boolean b;
         return switch (act.toLowerCase()) {
 
-            case "open" -> b = true;
-            case "close" -> b = false;
+            case "open" -> true;
+            case "close" -> false;
             default -> null;
         };
     }
@@ -87,14 +87,12 @@ public class Action {
             else{
                 System.out.println("Gate Closed");
             }
-        }
-        return "";
+        } return "";
     }
 
-    public static Objects Check() {
-        Human h = new Human();
-
-        return h.John();
+    public static Object Check(Human s) {
+        s = new Human();
+        return s;
     }
 }
 
