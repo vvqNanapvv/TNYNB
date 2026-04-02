@@ -92,7 +92,7 @@ public class Action {
     }
 
     public static Objects Check() {
-        Human.human h = new Human.human();
+        Human h = new Human();
 
         return h.John();
     }
