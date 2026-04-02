@@ -1,10 +1,10 @@
 package org.example;
 
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public void main(String[] args) {
 
         Human h = new Human();
         h.John();
