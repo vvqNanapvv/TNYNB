@@ -10,7 +10,7 @@ public class Main {
         cll.append((Method) Action.Gate);
         cll.display();
 
-        Human.human h = new Human.human();
+        Human h = new Human();
         h.John();
         h.Kyle();
         //just placeholder
