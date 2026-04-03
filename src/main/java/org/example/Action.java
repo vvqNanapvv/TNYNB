@@ -1,5 +1,7 @@
 package org.example;
 
+import com.sun.source.tree.WhileLoopTree;
+
 import java.util.*;
 
 public class Action {
@@ -41,13 +43,17 @@ public class Action {
         }
 
         // Moving to the next Method
-        public void moveNext() {
+        public Object moveNext() {
             Node current = head;
             head = head.next;
 
-            System.out.println(current.data.toString());
+            return current;
         }
-}
+
+        public Object getHead() {
+            return head;
+        }
+    }
 
     public static Object Door() {
         System.out.print("Open / Close: ");
@@ -64,7 +70,7 @@ public class Action {
         Object b = Door();
         if (b == null) {
             System.out.println("ERROR: INVALID GATE");
-            return Gate();
+            Gate();
         }
         else {
             if ((boolean) b){
@@ -73,11 +79,36 @@ public class Action {
             else{
                 System.out.println("Gate Closed");
             }
-        } return "";
+        }
+        return "";
     }
 
-    public static Object Check(Object h) {
-        return h;
+    public static Object Check(Human h) {
+        System.out.println("Checking " + h.getName());
+        System.out.println("Mouth: " + h.getMouth());
+        System.out.println("Eye: " + h.getEye());
+        System.out.println("Hair: " + h.getHair());
+        return "";
+    }
+
+    public static Object PhoneCall(Human h) {
+        if (h.getPhone_call() == "true") {
+            System.out.println("Calling " + h.getName());
+            System.out.println("I am home.");
+        }else {
+            System.out.println("Calling " + h.getName()+"...");
+            System.out.println("No one pick up your call.");
+        }
+        return "";
+    }
+
+    public static Object Id_card(Human h) {
+        if (h.getId_card() == "true") {
+            System.out.println("ID card identify");
+        }else  {
+            System.out.println("ID card is faulty");
+        }
+        return "";
     }
 }
 

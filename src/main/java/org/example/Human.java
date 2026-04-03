@@ -1,43 +1,63 @@
 package org.example;
 
-import java.util.*;
+public class Human {
+    private String name;
+    private String mouth;
+    private String eye;
+    private String hair;
+    private String Id_card;
+    private String Phone_call;
 
-public class Human extends Attribute{
-    static Random rand = new Random();
+    Human(){};
 
-    Object[] people = {John(),Kyle()};
-
-    static String [] EYE = {"Black","Brown","Blue","Green"};
-    static String [] MOUTH = {"Big","Slim","Thin"};
-    static String [] HAIR = {"Black","Brown","Grey","White"};
-
-    public Object John() {
-
-        setName("John Tennyson");
-        setEye(EYE[rand.nextInt(EYE.length)]);
-        setMouth(MOUTH[rand.nextInt(MOUTH.length)]);
-        setHair(HAIR[rand.nextInt(HAIR.length)]);
-
-        System.out.println("Name: " + getName()
-                + "\n Eye: " + getEye()
-                + "\n Mouth: " + getMouth()
-                + "\n Hair: " + getHair());
-
-        return "";
+    Human(String name, String mouth, String eye, String hair, String Id_card, String Phone_call){
+        this.name = name;
+        this.mouth = mouth;
+        this.eye = eye;
+        this.hair = hair;
+        this.Id_card = Id_card;
+        this.Phone_call = Phone_call;
     }
 
-    public Object Kyle() {
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        setName("Kyle Tenon");
-        setEye(EYE[rand.nextInt(EYE.length)]);
-        setMouth(MOUTH[rand.nextInt(MOUTH.length)]);
-        setHair(HAIR[rand.nextInt(HAIR.length)]);
+    public String getMouth() {
+        return mouth;
+    }
+    public void setMouth(String mouth) {
+        this.mouth = mouth;
+    }
 
-        System.out.println("Name: " + getName()
-                + "\n Eye: " + getEye()
-                + "\n Mouth: " + getMouth()
-                + "\n Hair: " + getHair());
+    public String getEye() {
+        return eye;
+    }
+    public void setEye(String eye) {
+        this.eye = eye;
+    }
 
-        return "";
+    public String getHair() {
+        return hair;
+    }
+    public void setHair(String hair) {
+        this.hair = hair;
+    }
+
+    public String getId_card() {
+        return Id_card;
+    }
+    public void setId_card(String id_card) {
+        Id_card = id_card;
+    }
+
+    public String getPhone_call() {
+        return Phone_call;
+    }
+    public void setPhone_call(String phone_call) {
+        Phone_call = phone_call;
     }
 }
