@@ -1,9 +1,11 @@
 package org.example;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
+        Action.Cll cll = new Action.Cll();
 
         Random rand = new Random();
         Attribute att = new Attribute();
@@ -23,19 +25,19 @@ public class Main {
                 att.Phone_call[rand.nextInt(att.Id_card.length)]);
 
         Human[] people = new Human[4];
+        int line = 0;
         people[0] = John;
         people[1] = Jane;
 
-        Action.Check(people[0]);
+        cll.append(() -> Action.Check(people[0]));
+        cll.append(() -> Action.Id_card(people[0]));
+        cll.append(Action::Gate);
         System.out.println(" ");
         Action.Check(people[1]);
         Action.PhoneCall(people[0]);
         Action.Id_card(people[0]);
 
-        Action.Cll cll = new Action.Cll();
-        cll.append(Action.Id_card(people[0]));
-
-        /*while (true) {
+        while (true) {
 
             System.out.println("\n--- Action Menu ---");
             System.out.println("1. Next");
@@ -53,19 +55,19 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    cll.moveNext();
+                    cll.rotateHead(1);
+                    cll.Show();
                     break;
                 case 2:
-                    cll.getHead();
-                    sc.close();
-                    return;
+                    cll.executeAt(0);
+                    break;
                 case 3:
                     System.out.println("Exiting...");
                     sc.close();
                     return;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("ERROR: Invalid input.");
             }
-        }*/
+        }
     }
 }

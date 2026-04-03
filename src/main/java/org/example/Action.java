@@ -1,7 +1,5 @@
 package org.example;
 
-import com.sun.source.tree.WhileLoopTree;
-
 import java.util.*;
 
 public class Action {
@@ -9,49 +7,75 @@ public class Action {
     static Scanner sc = new Scanner(System.in);
 
     //Circling Method
-    public static class Cll {
-        static class Node {
-            Object data;
-            Node next;
+    static class Node {
+        Runnable task; // Store a method as Runnable
+        Node next;
 
-            public Node(Object data) {
-                this.data = data;
-                this.next = null;
-            }
+        public Node(Runnable task) {
+            this.task = task;
+            this.next = null;
         }
+    }
 
+    // Circular linked list class
+    static class Cll {
         private Node head;
-        private Node tail;
+
         public Cll() {
-            head = null;
-            tail = null;
+            this.head = null;
         }
 
-        // Inserting Method at the end of the list
-        public void append(Object data) {
-            Node Method = new Node(data);
+        // Method to append a new task
+        public void append(Runnable task) {
+            Node newNode = new Node(task);
             if (head == null) {
-                head = Method;
-                tail = Method;
-                tail.next = head;
-
+                head = newNode;
+                head.next = head; // Circular link to itself
                 return;
             }
-            tail.next = Method;
-            tail = Method;
-            tail.next = head;
-        }
-
-        // Moving to the next Method
-        public Object moveNext() {
             Node current = head;
-            head = head.next;
-
-            return current;
+            while (current.next != head) {
+                current = current.next;
+            }
+            current.next = newNode;
+            newNode.next = head; // Circular link
+        }
+        // Rotating the data
+        public void rotateHead(int positions) {
+            if (head == null || head.next == head || positions <= 0) {
+                return; // Nothing to rotate
+            }
+            Node temp = head;
+            for (int i = 0; i < positions; i++) {
+                temp = temp.next;
+            }
+            head = temp; // Move head to the new position
         }
 
-        public Object getHead() {
-            return head;
+        public void Show() {
+            Node temp = head;
+            if (temp != null) {
+                System.out.println(Arrays.toString(new Runnable[]{temp.task}));
+            }
+        }
+
+        // Execute at head, In this case is [0] aka.Head
+        public void executeAt(int index) {
+            if (head == null) {
+                System.out.println("List is empty");
+                return;
+            }
+            Node current = head;
+            int count = 0;
+            do {
+                if (count == index) {
+                    current.task.run();
+                    return;
+                }
+                current = current.next;
+                count++;
+            } while (current != head);
+            System.out.println("Index out of bounds");
         }
     }
 
@@ -66,7 +90,7 @@ public class Action {
         };
     }
 
-    public static Object Gate() {
+    public static void Gate() {
         Object b = Door();
         if (b == null) {
             System.out.println("ERROR: INVALID GATE");
@@ -80,35 +104,31 @@ public class Action {
                 System.out.println("Gate Closed");
             }
         }
-        return "";
     }
 
-    public static Object Check(Human h) {
+    public static void Check(Human h) {
         System.out.println("Checking " + h.getName());
         System.out.println("Mouth: " + h.getMouth());
         System.out.println("Eye: " + h.getEye());
         System.out.println("Hair: " + h.getHair());
-        return "";
     }
 
-    public static Object PhoneCall(Human h) {
-        if (h.getPhone_call() == "true") {
+    public static void PhoneCall(Human h) {
+        if (Objects.equals(h.getPhone_call(), "true")) {
             System.out.println("Calling " + h.getName());
             System.out.println("I am home.");
         }else {
             System.out.println("Calling " + h.getName()+"...");
             System.out.println("No one pick up your call.");
         }
-        return "";
     }
 
-    public static Object Id_card(Human h) {
-        if (h.getId_card() == "true") {
+    public static void Id_card(Human h) {
+        if (Objects.equals(h.getId_card(), "true")) {
             System.out.println("ID card identify");
         }else  {
             System.out.println("ID card is faulty");
         }
-        return "";
     }
 }
 
