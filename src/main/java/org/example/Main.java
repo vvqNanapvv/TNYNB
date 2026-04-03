@@ -29,13 +29,10 @@ public class Main {
         people[0] = John;
         people[1] = Jane;
 
-        cll.append(() -> Action.Check(people[0]));
-        cll.append(() -> Action.Id_card(people[0]));
-        cll.append(() -> Action.PhoneCall(people[0]));
-        cll.append(() -> Action.Gate());
-
-        // Show Method name
-        String[] method = {"Check","Id-Card","Phone-Call","Gate"};
+        cll.append("Check",() -> Action.Check(people[0]));
+        cll.append("Id-Card",() -> Action.Id_card(people[0]));
+        cll.append("Phone-Call",() -> Action.PhoneCall(people[0]));
+        cll.append("Gate", Action::Gate);
 
         System.out.println(" ");
         Action.Check(people[1]);
@@ -43,12 +40,12 @@ public class Main {
         Action.Id_card(people[0]);
 
         while (true) {
-
             System.out.println("\n--- Action Menu ---");
             System.out.println("1. Next");
             System.out.println("2. Act");
             System.out.println("3. Exit");
             System.out.print("Enter choice: ");
+            System.out.println("Action: " + cll.methodName());
 
             int choice;
             if (!sc.hasNextInt()) {
@@ -61,10 +58,11 @@ public class Main {
             switch (choice) {
                 case 1:
                     cll.rotate(1);
-                    System.out.println(method[0]);
+                    System.out.println("Action: " + cll.methodName());
                     break;
                 case 2:
-                    cll.executeAt(0);
+                    System.out.println("Execute: " + cll.methodName());
+                    cll.executeAt();
                     break;
                 case 3:
                     System.out.println("Exiting...");

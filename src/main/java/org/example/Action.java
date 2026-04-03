@@ -7,21 +7,19 @@ public class Action {
     static Scanner sc = new Scanner(System.in);
 
     static class Node {
+        String methodName;
         Runnable task; // Store a method as Runnable
         Node next;
 
-        public Node(Runnable task) {
+        public Node(String methodName,Runnable task) {
+            this.methodName = methodName;
             this.task = task;
             this.next = null;
         }
     }
     // Circular linked list class for Methods
     static class Cll {
-        private Node head;
-
-        public Cll() {
-            this.head = null;
-        }
+        private Node head = null;
 
         // Rotate the head by 'positions' steps
         public void rotate(int positions) {
@@ -33,11 +31,11 @@ public class Action {
                 temp = temp.next;
             }
             head = temp; // Move head to the new position
+            System.out.println();
         }
-
         // Method to append a new task
-        public void append(Runnable task) {
-            Node newNode = new Node(task);
+        public void append(String methodName,Runnable task) {
+            Node newNode = new Node(methodName,task);
             if (head == null) {
                 head = newNode;
                 head.next = head; // Circular link to itself
@@ -50,24 +48,17 @@ public class Action {
             current.next = newNode;
             newNode.next = head; // Circular link
         }
-
+        // Get Method's name
+        public String methodName() {
+            return (head != null) ? head.methodName : null;
+        }
         // Execute at Head
-        public void executeAt(int index) {
-            if (head == null) {
-                System.out.println("List is empty");
-                return;
+        public void executeAt() {
+            if (head != null && head.task != null) {
+                head.task.run();
+            } else {
+                System.out.println("No method to execute.");
             }
-            Node current = head;
-            int count = 0;
-            do {
-                if (count == index) {
-                    current.task.run();
-                    return;
-                }
-                current = current.next;
-                count++;
-            } while (current != head);
-            System.out.println("Index out of bounds");
         }
     }
 
