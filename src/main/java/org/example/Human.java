@@ -8,7 +8,7 @@ public class Human {
     private String Id_card;
     private String Phone_call;
 
-    Human(){};
+    Human(){}
 
     Human(String name, String mouth, String eye, String hair, String Id_card, String Phone_call){
         this.name = name;

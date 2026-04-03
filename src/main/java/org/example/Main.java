@@ -1,9 +1,9 @@
 package org.example;
-import java.lang.reflect.Method;
+
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Action.Cll cll = new Action.Cll();
 
@@ -25,7 +25,6 @@ public class Main {
                 att.Phone_call[rand.nextInt(att.Id_card.length)]);
 
         Human[] people = new Human[4];
-        int line = 0;
         people[0] = John;
         people[1] = Jane;
 
