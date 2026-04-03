@@ -6,7 +6,6 @@ public class Action {
 
     static Scanner sc = new Scanner(System.in);
 
-    //Circling Method
     static class Node {
         Runnable task; // Store a method as Runnable
         Node next;
@@ -16,13 +15,24 @@ public class Action {
             this.next = null;
         }
     }
-
-    // Circular linked list class
+    // Circular linked list class for Methods
     static class Cll {
         private Node head;
 
         public Cll() {
             this.head = null;
+        }
+
+        // Rotate the head by 'positions' steps
+        public void rotate(int positions) {
+            if (head == null || head.next == head || positions <= 0) {
+                return; // Nothing to rotate
+            }
+            Node temp = head;
+            for (int i = 0; i < positions; i++) {
+                temp = temp.next;
+            }
+            head = temp; // Move head to the new position
         }
 
         // Method to append a new task
@@ -40,26 +50,8 @@ public class Action {
             current.next = newNode;
             newNode.next = head; // Circular link
         }
-        // Rotating the data
-        public void rotateHead(int positions) {
-            if (head == null || head.next == head || positions <= 0) {
-                return; // Nothing to rotate
-            }
-            Node temp = head;
-            for (int i = 0; i < positions; i++) {
-                temp = temp.next;
-            }
-            head = temp; // Move head to the new position
-        }
 
-        public void Show() {
-            Node temp = head;
-            if (temp != null) {
-                System.out.println(Arrays.toString(new Runnable[]{temp.task}));
-            }
-        }
-
-        // Execute at head, In this case is [0] aka.Head
+        // Execute at Head
         public void executeAt(int index) {
             if (head == null) {
                 System.out.println("List is empty");

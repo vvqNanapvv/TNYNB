@@ -25,12 +25,18 @@ public class Main {
                 att.Phone_call[rand.nextInt(att.Id_card.length)]);
 
         Human[] people = new Human[4];
+
         people[0] = John;
         people[1] = Jane;
 
         cll.append(() -> Action.Check(people[0]));
         cll.append(() -> Action.Id_card(people[0]));
-        cll.append(Action::Gate);
+        cll.append(() -> Action.PhoneCall(people[0]));
+        cll.append(() -> Action.Gate());
+
+        // Show Method name
+        String[] method = {"Check","Id-Card","Phone-Call","Gate"};
+
         System.out.println(" ");
         Action.Check(people[1]);
         Action.PhoneCall(people[0]);
@@ -54,8 +60,8 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    cll.rotateHead(1);
-                    cll.Show();
+                    cll.rotate(1);
+                    System.out.println(method[0]);
                     break;
                 case 2:
                     cll.executeAt(0);
