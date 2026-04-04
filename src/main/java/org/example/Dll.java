@@ -27,17 +27,6 @@ public class Dll {
                 temp.next = newNode;
                 newNode.prev = temp;
             }
-            // Insert at the beginning
-            public void insertFront(Human data) {
-                Node newNode = new Node(data);
-                if (head == null) {
-                    head = newNode;
-                    return;
-                }
-                newNode.next = head;
-                head.prev = newNode;
-                head = newNode;
-            }
             // Delete a node by value
             public boolean delete(Human key) {
                 if (head == null) {
@@ -69,37 +58,7 @@ public class Dll {
                 }
                 return true;
             }
-            // Display list forward
-            public void displayForward() {
-                if (head == null) {
-                    System.out.println("List is empty.");
-                    return;
-                }
-                Node temp = head;
-                System.out.print("Forward: ");
-                while (temp != null) {
-                    System.out.print(temp.data + " ");
-                    temp = temp.next;
-                }
-                System.out.println();
-            }
-            // Display list backward
-            public void displayBackward() {
-                if (head == null) {
-                    System.out.println("List is empty.");
-                    return;
-                }
-                Node temp = head;
-                while (temp.next != null) {
-                    temp = temp.next;
-                }
-                System.out.print("Backward: ");
-                while (temp != null) {
-                    System.out.print(temp.data + " ");
-                    temp = temp.prev;
-                }
-                System.out.println();
-            }
+
         }
     }
 }
