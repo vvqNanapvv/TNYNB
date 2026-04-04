@@ -11,7 +11,7 @@ public class Main {
         Cll action = new Cll();
         Attribute att = new Attribute();
         Sll queue = new Sll();
-
+        // Neighbors
         Human John = new Human("John Smith", att.Identity[rand.nextInt()]);
         if(John.getIdentity()==true) {
             John.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
@@ -48,6 +48,7 @@ public class Main {
         Kate.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
         Kate.setPhone_call(Kate.getIdentity());
 
+        // Neighbor Line
         Human[] people = new Human[4];
         int line = 0;
         people[0] = John;
@@ -57,12 +58,14 @@ public class Main {
         queue.enqueue(2,people[people.length-1]);
         queue.enqueue(3,people[people.length-1]);
 
+        // Actions
         action.append("Check",() -> Action.Check(people[line]));
         action.append("Id-Card",() -> Action.Id_card(people[line]));
         action.append("Phone-Call",() -> Action.PhoneCall(people[line]));
         action.append("Queue", queue::display);
         action.append("Gate", () -> Action.Gate(queue));
 
+        // Gameplay window
         while (!queue.isEmpty()) {
             System.out.println("\n--- Action Menu ---");
             System.out.println("1. Next: Action");
