@@ -5,13 +5,20 @@ public class Human {
     private String mouth;
     private String eye;
     private String hair;
-    private String Id_card;
-    private String Phone_call;
+    private Boolean Id_card;
+    private Boolean Phone_call;
+    private Boolean Identity;
 
-    Human(){}
-
-    Human(String name, String mouth, String eye, String hair, String Id_card, String Phone_call){
+    Human(String name,Boolean Identity){
         this.name = name;
+        this.Identity = Identity;
+    }
+
+    public void setHuman(Human human){}
+
+    Human(String name,Boolean Identity, String mouth, String eye, String hair, Boolean Id_card, Boolean Phone_call){
+        this.name = name;
+        this.Identity = Identity;
         this.mouth = mouth;
         this.eye = eye;
         this.hair = hair;
@@ -21,9 +28,6 @@ public class Human {
 
     public String getName() {
         return name;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getMouth() {
@@ -47,17 +51,21 @@ public class Human {
         this.hair = hair;
     }
 
-    public String getId_card() {
+    public Boolean getId_card() {
         return Id_card;
     }
-    public void setId_card(String id_card) {
+    public void setId_card(Boolean id_card) {
         Id_card = id_card;
     }
 
-    public String getPhone_call() {
+    public Boolean getPhone_call() {
         return Phone_call;
     }
-    public void setPhone_call(String phone_call) {
+    public void setPhone_call(Boolean phone_call) {
         Phone_call = phone_call;
+    }
+
+    public Boolean getIdentity() {
+        return Identity;
     }
 }
