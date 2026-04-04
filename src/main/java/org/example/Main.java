@@ -34,18 +34,13 @@ public class Main {
         cll.append("Phone-Call",() -> Action.PhoneCall(people[0]));
         cll.append("Gate", Action::Gate);
 
-        System.out.println(" ");
-        Action.Check(people[1]);
-        Action.PhoneCall(people[0]);
-        Action.Id_card(people[0]);
-
         while (true) {
             System.out.println("\n--- Action Menu ---");
-            System.out.println("1. Next");
+            System.out.println("1. Next Action");
             System.out.println("2. Act");
             System.out.println("3. Exit");
-            System.out.print("Enter choice: ");
             System.out.println("Action: " + cll.methodName());
+            System.out.print("Enter choice: ");
 
             int choice;
             if (!sc.hasNextInt()) {
@@ -62,6 +57,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Execute: " + cll.methodName());
+                    System.out.println("");
                     cll.executeAt();
                     break;
                 case 3:

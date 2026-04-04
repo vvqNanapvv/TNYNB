@@ -21,7 +21,7 @@ public class Action {
     static class Cll {
         private Node head = null;
 
-        // Rotate the head by 'positions' steps
+        // Rotate the head by 'positions' steps, In this case is always "1"
         public void rotate(int positions) {
             if (head == null || head.next == head || positions <= 0) {
                 return; // Nothing to rotate
@@ -33,7 +33,7 @@ public class Action {
             head = temp; // Move head to the new position
             System.out.println();
         }
-        // Method to append a new task
+        // Method to append a Method()
         public void append(String methodName,Runnable task) {
             Node newNode = new Node(methodName,task);
             if (head == null) {
@@ -52,7 +52,7 @@ public class Action {
         public String methodName() {
             return (head != null) ? head.methodName : null;
         }
-        // Execute at Head
+        // Execute at Head -> Method()
         public void executeAt() {
             if (head != null && head.task != null) {
                 head.task.run();
@@ -77,7 +77,6 @@ public class Action {
         Object b = Door();
         if (b == null) {
             System.out.println("ERROR: INVALID GATE");
-            Gate();
         }
         else {
             if ((boolean) b){

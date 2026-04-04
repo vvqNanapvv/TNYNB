@@ -1,7 +1,6 @@
 package org.example;
 
-import java.util.Random;
-
+// Kinda want to make Human Object here but idk how :/
 public class Neighbor {
 
 }
