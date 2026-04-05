@@ -1,7 +1,5 @@
 package org.example.Neighbor;
 
-import org.example.Script;
-
 public class IDCard {
     String name;
     String hair;

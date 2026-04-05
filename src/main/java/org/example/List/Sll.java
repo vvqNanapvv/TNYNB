@@ -1,7 +1,7 @@
 package org.example.List;
 
 public class Sll {
-    class Node {
+    static class Node {
         String data;
         Node next;
 

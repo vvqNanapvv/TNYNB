@@ -7,7 +7,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Script mss = new Script ();
 
         Cll_Dll action = new Cll_Dll();
         Sll log = new Sll();
