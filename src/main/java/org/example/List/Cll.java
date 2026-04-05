@@ -13,8 +13,9 @@ public class Cll {
             this.next = null;
         }
     }
-    // Circular linked list class for Methods
+
     private Node head = null;
+
     // Rotate the head by 'positions' steps, In this case is always "1"
     public void rotate(int positions) {
         if (head == null || head.next == head || positions <= 0) {
@@ -27,6 +28,7 @@ public class Cll {
         head = temp; // Move head to the new position
         System.out.println();
     }
+
     // Method to append a Method()
     public void append(String methodName, Runnable task) {
         Node newNode = new Node(methodName, task);

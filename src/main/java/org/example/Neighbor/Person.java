@@ -114,5 +114,4 @@ public class Person {
     public IDCard getId() {
         return id;
     }
-
 }

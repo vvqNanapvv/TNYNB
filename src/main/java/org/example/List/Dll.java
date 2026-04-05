@@ -27,7 +27,7 @@ public class  Dll {
         newNode.prev = cur;
     }
 
-    public void print() {
+    public void printAll() {
         Node cur = head;
         while (cur != null) {
             System.out.print(cur.score + " <-> ");
