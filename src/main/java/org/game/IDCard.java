@@ -19,6 +19,7 @@ public class IDCard {
         System.out.println("Hair: " + hair);
         System.out.println("Eyes: " + eyes);
         System.out.println("Mouth: " + mouth);
+
         System.out.println("-----------------");
     }
 }

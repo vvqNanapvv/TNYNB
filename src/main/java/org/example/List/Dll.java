@@ -1,16 +1,15 @@
-package org.example.linkedlist;
+package org.example.List;
 
-import org.example.Human;
-class Node {
-    int score;
-    Node prev, next;
+public class  Dll {
+    class Node {
+        int score;
+        Node prev, next;
 
-    public Node(int score) {
-        this.score = score;
+        public Node(int score) {
+            this.score = score;
+        }
     }
-}
 
-public class Dll {
     Node head;
 
     public void add(int score) {
@@ -20,12 +19,10 @@ public class Dll {
             head = newNode;
             return;
         }
-
         Node cur = head;
         while (cur.next != null) {
             cur = cur.next;
         }
-
         cur.next = newNode;
         newNode.prev = cur;
     }
@@ -37,6 +34,7 @@ public class Dll {
             cur = cur.next;
         }
         System.out.println("null");
+
     }
 }
 

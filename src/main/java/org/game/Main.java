@@ -1,7 +1,6 @@
 package org.game;
 
-import org.game.list.Dll;
-import org.game.list.Sll;
+import org.game.list.*;
 
 import java.util.*;
 import java.util.Queue;
@@ -14,7 +13,7 @@ public class Main {
         Sll log = new Sll();
         Dll scoreList = new Dll();
 
-        // 🔥 สร้างตัวละคร (ไม่ซ้ำ)
+        // สร้างตัวละคร (ไม่ซ้ำ)
         ArrayList<Person> humans = new ArrayList<>();
         ArrayList<Person> aliens = new ArrayList<>();
 
@@ -34,12 +33,12 @@ public class Main {
 
         ArrayList<Person> selected = new ArrayList<>();
 
-        // 👤 3 คน
+        // 3 คน
         for (int i = 0; i < 3; i++) {
             selected.add(humans.get(i));
         }
 
-        // 👽 2 คน
+        // 2 คน
         for (int i = 0; i < 2; i++) {
             selected.add(aliens.get(i));
         }

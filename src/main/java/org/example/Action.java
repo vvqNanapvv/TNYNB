@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Neighbor.*;
 import java.util.*;
 
 public class Action {
@@ -16,7 +17,7 @@ public class Action {
         };
     }
     //Open or Close then return Human to the stack
-    public static void Gate(Queue<Human> q,Stack<Human> p) {
+    public static void Gate() {
         Object b = Door();
         if (b == null) {
             System.out.println("ERROR: INVALID GATE");
@@ -28,21 +29,29 @@ public class Action {
                 System.out.println("Gate Closed");
             }
         }
-        p.push(q.poll());
     }
 
-    public static void Check(Human h) {
+    public static String Species(Person person) {
+        if (person.isHuman()) {
+            return "Human";
+        } else {
+            return "Alien";
+        }
+    }
+
+    public static void Check(Person person) {
         System.out.println("What do you want to do?");
 
         while (true) {
-            System.out.println(h.getName());
+            System.out.println(person.getName());
             System.out.println("\n--- Check? ---");
-            System.out.println("1. Mouth");
-            System.out.println("2. Eye");
-            System.out.println("3. Hair");
-            System.out.println("4. Exit");
+            System.out.println("1. Check Mouth: Mouth");
+            System.out.println("2. Check Eye: Eye");
+            System.out.println("3. Check Hair: Hair");
+            System.out.println("4. Check Skin: Skin");
+            System.out.println("5. Id Number: ID");
+            System.out.println("5. Return");
             System.out.print("\nEnter choice by name: ");
-
 
             String choice;
             if (!sc.hasNextLine()) {
@@ -52,38 +61,43 @@ public class Action {
             }
             choice = sc.nextLine();
             switch (choice.toLowerCase()) {
-                case "mouth": System.out.println("Mouth: " + h.getMouth());
+                case "mouth": System.out.println("Mouth: " + person.getMouth());
                 break;
-                case "eye": System.out.println("Eye: " + h.getEye());
+                case "eye": System.out.println("Eye: " + person.getEye());
                 break;
-                case "hair": System.out.println("Hair: " + h.getHair());
+                case "hair": System.out.println("Hair: " + person.getHair());
                 break;
-                case "exit": return;
+                case "skin": System.out.println("Skin: " + person.getSkin());
+                break;
+                case "id": System.out.println("ID_Number: " + person.getId());
+                break;
+                case "return": return;
             }
         }
     }
 
-    public static void PhoneCall(Human h) {
-        if (Objects.equals(h.getPhone_call(), "true")) {
-            System.out.println("Calling " + h.getName());
-            System.out.println("I am home.");
-        }else {
-            System.out.println("Calling " + h.getName()+"...");
-            System.out.println("No one pick up your call.");
+    public static void call(Person person) {
+        System.out.println("Calling...");
+        if (person.isHuman()) {
+            System.out.println("📞 Someone picked up!");
+        } else {
+            System.out.println("📞 No answer...");
         }
     }
 
-    public static void Id_card(Human h) {
-        if (Objects.equals(h.getId_card(), "true")) {
-            System.out.println("ID card identify");
-        }else  {
-            System.out.println("ID card is faulty");
-        }
+    public static void showDoc(Person person) {
+        System.out.println("---- ID CARD ----");
+        System.out.println("Name: " + person.getName());
+        System.out.println("Hair: " +person.getHair());
+        System.out.println("Eyes: " + person.getEye());
+        System.out.println("Mouth: " + person.getMouth());
+        System.out.println("Skin: " + person.getSkin());
+        System.out.println("ID: " + person.getIdCard());
+        System.out.println("-----------------");
     }
-
-    public static void Queue(Queue<Human> q) {
-        for (Human human : q) {
-            System.out.println(human.getName());
+    public static void Queue(Queue<Person> human) {
+        for (Person person : human) {
+            System.out.println(person.getName());
         }
     }
 }

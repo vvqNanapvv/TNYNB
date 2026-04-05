@@ -22,17 +22,17 @@ public class Person {
         this.name = name;
         this.isHuman = isHuman;
 
-        // 🎭 ลักษณะจริง
+        // ลักษณะจริง
         this.hair = hairs[r.nextInt(hairs.length)];
         this.eyes = eyesList[r.nextInt(eyesList.length)];
         this.mouth = mouths[r.nextInt(mouths.length)];
 
-        // 🪪 ID
+        // ID
         if (isHuman) {
-            // ✔ ตรง 100%
+            // ตรง 100%
             id = new IDCard(name, hair, eyes, mouth);
         } else {
-            // 👽 Alien → ผิด 1 จุดแบบเนียน
+            // Alien → ผิด 1 จุดแบบเนียน
             String fakeHair = hair;
             String fakeEyes = eyes;
             String fakeMouth = mouth;
@@ -51,7 +51,7 @@ public class Person {
         }
     }
 
-    // 🔥 ฟังก์ชันสุ่มค่า "ที่ไม่ซ้ำของเดิม"
+    //
     private String getDifferent(String[] arr, String current) {
         String value;
         do {

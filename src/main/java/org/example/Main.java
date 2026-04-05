@@ -1,85 +1,75 @@
 package org.example;
 
-import org.example.linkedlist.*;
+import org.example.List.*;
+import org.example.Neighbor.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Random rand = new Random();
+        Random r = new Random();
 
-        Attribute att = new Attribute();
         Script mss = new Script ();
 
         Cll action = new Cll();
-        Sll line = new Sll();
+        Sll log = new Sll();
+        Dll scoreList = new Dll();
 
-        Queue<Human> q = new ArrayDeque<>(5);
-        Stack<Human> p = new Stack<>();
-
-        // Traits
-        line.addMessage(mss.mss_1[rand.nextInt(mss.mss_1.length)]);
+        // Conversation
 
 
         // Neighbors
-        Human John = new Human("John Smith", att.Identity[rand.nextInt(att.Identity.length)]);
-        if (John.getIdentity().equals("true")) {
-            John.setMouth(att.Mouth[rand.nextInt(att.Mouth.length)]);
-            John.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
-            John.setHair(att.Hair[rand.nextInt(att.Hair.length)]);
-            John.setPhone_call(att.Phone_call[0]);
-        }else{
-            John.setMouth(att.alienMouth[rand.nextInt(att.alienMouth.length)]);
-            John.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
-            John.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);
-            John.setPhone_call(att.Phone_call[rand.nextInt(att.Phone_call.length)]);
-        }   John.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
+        ArrayList<Person> humans = new ArrayList<>();
+        ArrayList<Person> aliens = new ArrayList<>();
 
-        Human Jane = new Human("Jane Skyler", att.Identity[rand.nextInt(att.Identity.length)]);
-        if (Jane.getIdentity().equals("true")) {
-            Jane.setMouth(att.Mouth[rand.nextInt(att.Mouth.length)]);
-            Jane.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
-            Jane.setHair(att.Hair[rand.nextInt(att.Hair.length)]);
-            Jane.setPhone_call(att.Phone_call[0]);
-        }else{
-            Jane.setMouth(att.alienMouth[rand.nextInt(att.alienMouth.length)]);
-            Jane.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
-            Jane.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);
-            Jane.setPhone_call(att.Phone_call[rand.nextInt(att.Phone_call.length)]);
-        }   Jane.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
+        humans.add(new Person("John", true));
+        humans.add(new Person("Alice", true));
+        humans.add(new Person("Mike", true));
+        humans.add(new Person("Sarah", true));
+        humans.add(new Person("David", true));
 
-        Human Kate = new Human("Kate Benjamin", att.Identity[rand.nextInt(att.Identity.length)]);
-        if (Kate.getIdentity().equals("true")) {
-            Kate.setMouth(att.Mouth[rand.nextInt(att.Mouth.length)]);
-            Kate.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
-            Kate.setHair(att.Hair[rand.nextInt(att.Hair.length)]);
-            Kate.setPhone_call(att.Phone_call[0]);
-        }else{
-            Kate.setMouth(att.alienMouth[rand.nextInt(att.alienMouth.length)]);
-            Kate.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
-            Kate.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);
-            Kate.setPhone_call(att.Phone_call[rand.nextInt(att.Phone_call.length)]);
-        }   Kate.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
+        aliens.add(new Person("John", false));
+        humans.add(new Person("Alice", false));
+        aliens.add(new Person("Mike", false));
+        aliens.add(new Person("Sarah", false));
+        aliens.add(new Person("David", false));
 
         // Neighbor Line
-        q.add(John);
-        q.add(Jane);
-        q.add(Kate);
-        q = shuffleQueue(q);
-        Queue<Human> shuffleQ = q;
+        Collections.shuffle(humans);
+        Collections.shuffle(aliens);
 
-        Human[] people = {shuffleQ.poll(), shuffleQ.poll(),shuffleQ.poll()};
+        ArrayList<Person> selected = new ArrayList<>();
 
-        // Actions
-        action.append("Check",() -> Action.Check(people[0]));
-        action.append("Talk", line::displayTrait);
-        action.append("Id-Card",() -> Action.Id_card(people[0]));
-        action.append("Phone-Call",() -> Action.PhoneCall(people[0]));
-        action.append("Gate",() -> Action.Gate(shuffleQ,p));
-        action.append("Queue",() -> Action.Queue(shuffleQ));
+        // 3 human
+        for (int i = 0; i < 3; i++) {
+            selected.add(humans.get(i));
+        }
+        // 2 imposter
+        for (int i = 0; i < 2; i++) {
+            selected.add(aliens.get(i));
+        }
+
+        Collections.shuffle(selected);
+        Queue<Person> queue = new ArrayDeque<>(selected);
+
+        int score = 0;
+        int alienPassed = 0;
+        int round = 1;
+
+        System.out.println("\n=================");
+        System.out.println("Round: " + round + "/5");
 
         // Gameplay window
-        while (!q.isEmpty()) {
+        while (!queue.isEmpty()) {
+            Person p = (Person) queue.poll();
+
+            // Actions
+            action.append("Check",() -> Action.Check(p));
+            action.append("ID Document",() -> Action.showDoc(p));
+            action.append("House Call",() -> Action.call(p));
+            action.append("Gate", Action::Gate);
+            action.append("Queue", () -> Action.Queue(queue));
+
             System.out.println("\n--- Action Menu ---");
             System.out.println("1. Next: Action");
             System.out.println("2. Act");
@@ -102,39 +92,39 @@ public class Main {
                 case "act":
                     System.out.println("Execute: " + action.methodName());
                     System.out.println();
-                    action.executeAt();
+                    if (action.methodName().equals("Gate")) {
+                        if (p.isHuman()) {
+                            score++;
+                        } else {
+                            score--;
+                            alienPassed++;
+                        }
+                        log.add(p.getName() + " is a " + Action.Species(p));
+                    }
                     break;
                 case "leave":
                     System.out.println("Exiting...");
+                    System.out.println("You quited your job...:<");
                     sc.close();
                     return;
                 default:
                     System.out.println("ERROR: Invalid input.");
             }
+            scoreList.add(score);
+            round++;
         }
-        // Check condition to win
-        for (int i = p.size() - 1; i >= 0; i--) {
-            int y=0;
-            if(Objects.equals(p.get(i).getIdentity(), "false")){
-                y++;
-                if(y>=2){
-                    System.out.println("You have failed your neighbor :[");
-                }
-            }
-        }
-    }
-    public static <T> Queue<T> shuffleQueue(Queue<T> queue) {
-        if (queue == null || queue.isEmpty()) {
-            return new LinkedList<>();
+        System.out.println("\n=================");
+        if (alienPassed==0 && round > 5) {
+            System.out.println(" Congratulations! You have complete the day!.");
+        } else if (alienPassed>=2 && round > 5) {
+            System.out.println(" YOU LOSE! Aliens have invaded!");
         }
 
-        // Convert queue to list
-        List<T> list = new ArrayList<>(queue);
+        System.out.println("Final Score: " + score);
+        System.out.println("\nLog:");
+        log.print();
 
-        // Shuffle the list
-        Collections.shuffle(list);
-
-        // Create a new queue from the shuffled list
-        return new LinkedList<>(list);
+        System.out.println("\nScore History:");
+        scoreList.print();
     }
 }
