@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.linkedlist.*;
 import java.util.*;
 
 public class Main {
@@ -7,63 +8,57 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
-
-        Cll action = new Cll();
         Attribute att = new Attribute();
+        Cll action = new Cll();
         Sll queue = new Sll();
+
         // Neighbors
-        Human John = new Human("John Smith", att.Identity[rand.nextInt()]);
-        if(John.getIdentity()==true) {
-            John.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
-            John.setMouth(att.Mouth[rand.nextInt(att.Mouth.length)]);
-            John.setHair(att.Hair[rand.nextInt(att.Hair.length)]);
-        } else {
-            John.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
-            John.setMouth(att.alienMouth[rand.nextInt(att.alienMouth.length)]);
-            John.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);}
-        John.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
-        John.setPhone_call(John.getIdentity());
+        Human John = new Human("John Smith",
+                att.Identity[rand.nextInt(att.Identity.length)],
+                att.Mouth[rand.nextInt(att.Mouth.length)],
+                att.Eye[rand.nextInt(att.Eye.length)],
+                att.Hair[rand.nextInt(att.Hair.length)],
+                att.Id_card[rand.nextInt(att.Id_card.length)],
+                att.Phone_call[rand.nextInt(att.Phone_call.length)]);
 
-        Human Jane = new Human("Jane Skyler", att.Identity[rand.nextInt()]);
-        if(Jane.getIdentity()==true) {
-            Jane.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
+        Human Jane = new Human("Jane Skyler", att.Identity[rand.nextInt(att.Identity.length)]);
+        if (Jane.getIdentity().equals("true")) {
             Jane.setMouth(att.Mouth[rand.nextInt(att.Mouth.length)]);
+            Jane.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
             Jane.setHair(att.Hair[rand.nextInt(att.Hair.length)]);
-        } else {
-            Jane.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
+            Jane.setPhone_call(att.Phone_call[0]);
+        }else{
             Jane.setMouth(att.alienMouth[rand.nextInt(att.alienMouth.length)]);
-            Jane.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);}
-        Jane.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
-        Jane.setPhone_call(Jane.getIdentity());
+            Jane.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
+            Jane.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);
+            Jane.setPhone_call(att.Phone_call[rand.nextInt(att.Phone_call.length)]);
+        }   Jane.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
 
-        Human Kate = new Human("Kate Benjamin", att.Identity[rand.nextInt()]);
-        if(Kate.getIdentity()==true) {
-            Kate.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
-            Kate.setMouth(att.Mouth[rand.nextInt(att.Mouth.length)]);
-            Kate.setHair(att.Hair[rand.nextInt(att.Hair.length)]);
-        } else {
-            Kate.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
-            Kate.setMouth(att.alienMouth[rand.nextInt(att.alienMouth.length)]);
-            Kate.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);}
-        Kate.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
-        Kate.setPhone_call(Kate.getIdentity());
+
+        Human Kate = new Human("Kate Benjamin",
+                att.Identity[rand.nextInt(att.Identity.length)],
+                att.Mouth[rand.nextInt(att.Mouth.length)],
+                att.Eye[rand.nextInt(att.Eye.length)],
+                att.Hair[rand.nextInt(att.Hair.length)],
+                att.Id_card[rand.nextInt(att.Id_card.length)],
+                att.Phone_call[rand.nextInt(att.Phone_call.length)]);
 
         // Neighbor Line
-        Human[] people = new Human[4];
+        Human[] people = new Human[3];
         int line = 0;
         people[0] = John;
         people[1] = Jane;
         people[2] = Kate;
-        queue.enqueue(1,people[people.length-1]);
-        queue.enqueue(2,people[people.length-1]);
-        queue.enqueue(3,people[people.length-1]);
+        queue.enqueue(1,people[rand.nextInt(people.length)]);
+        queue.enqueue(2,people[rand.nextInt(people.length)]);
+        queue.enqueue(3,people[rand.nextInt(people.length)]);
 
         // Actions
         action.append("Check",() -> Action.Check(people[line]));
         action.append("Id-Card",() -> Action.Id_card(people[line]));
         action.append("Phone-Call",() -> Action.PhoneCall(people[line]));
         action.append("Queue", queue::display);
-        action.append("Gate", () -> Action.Gate(queue));
+        action.append("Gate", () -> Action.Gate());
 
         // Gameplay window
         while (!queue.isEmpty()) {
@@ -99,7 +94,5 @@ public class Main {
                     System.out.println("ERROR: Invalid input.");
             }
         }
-
-
     }
 }

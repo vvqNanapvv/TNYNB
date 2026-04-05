@@ -3,9 +3,9 @@ package org.example;
 import java.lang.reflect.Array;
 
 public class Attribute {
-    Boolean[] Identity = {true,false};
-    Boolean[] Phone_call = {true,false};
-    Boolean[] Id_card = {true,false};
+    String[] Identity = {"true","false"};
+    String[] Phone_call = {"true","false"};
+    String[] Id_card = {"true","false"};
 
     String[] Hair = {"Black","Brown","Blue","Gray","Blonde"};
     String[] Eye = {"Black","Brown","Blue","Gray","Yellow"};

@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.linkedlist.Sll;
+
 import java.util.*;
 
 public class Action {
@@ -16,8 +18,7 @@ public class Action {
         };
     }
     //Open or Close then return Human to the stack
-    public static void Gate(Sll queue) {
-        Stack<Human> stack = new Stack<>();
+    public static Object Gate() {
         Object b = Door();
         if (b == null) {
             System.out.println("ERROR: INVALID GATE");
@@ -25,13 +26,14 @@ public class Action {
         else {
             if ((boolean) b){
                 System.out.println("Gate Open");
+                return true;
             }
             else{
                 System.out.println("Gate Closed");
+                return false;
             }
         }
-        stack.add(queue.dequeue());
-        queue.display();
+        return null;
     }
 
     public static void Check(Human h) {
@@ -65,7 +67,7 @@ public class Action {
     }
 
     public static void PhoneCall(Human h) {
-        if (h.getPhone_call() != true) {
+        if (Objects.equals(h.getPhone_call(), "true")) {
             System.out.println("Calling " + h.getName());
             System.out.println("I am home.");
         }else {
@@ -75,7 +77,7 @@ public class Action {
     }
 
     public static void Id_card(Human h) {
-        if (h.getId_card() == true) {
+        if (Objects.equals(h.getId_card(), "true")) {
             System.out.println("ID card identify");
         }else  {
             System.out.println("ID card is faulty");

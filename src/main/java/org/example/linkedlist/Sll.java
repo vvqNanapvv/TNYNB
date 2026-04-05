@@ -1,4 +1,7 @@
-package org.example;
+package org.example.linkedlist;
+
+import org.example.Human;
+
 // Neighbor line
 public class Sll {
     private static class Node {

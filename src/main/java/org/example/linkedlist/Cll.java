@@ -1,4 +1,5 @@
-package org.example;
+package org.example.linkedlist;
+
 //For Circling actions and Execute
 public class Cll {
     private static class Node {
