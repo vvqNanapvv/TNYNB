@@ -1,53 +1,46 @@
 package org.example.linkedlist;
 
-import org.example.Human;
-
-// Neighbor line
+// Neighbor's trait
 public class Sll {
     private static class Node {
-        String message;
+        String trait;
         Node next;
 
-        Node(String message) {
-            this.message = message;
+        public Node(String trait) {
+            this.trait = trait;
             this.next = null;
         }
-
-        class ConversationList {
-            private Node head;
-
-            // Add a new message to the end of the list
-            public void addMessage(String message) {
-                if (message == null || message.trim().isEmpty()) {
-                    System.out.println("Empty message ignored.");
-                    return;
-                }
-                Node newNode = new Node(message.trim());
-                if (head == null) {
-                    head = newNode;
-                } else {
-                    Node current = head;
-                    while (current.next != null) {
-                        current = current.next;
-                    }
-                    current.next = newNode;
-                }
+    }
+    private Node head = null;
+    // Add a new trait to the end of the list
+    public void addMessage(String trait) {
+        if (trait == null || trait.trim().isEmpty()) {
+            System.out.println("Empty trait ignored.");
+            return;
+        }
+        Node newNode = new Node(trait.trim());
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
             }
-
-            // Display the conversation in order
-            public void displayConversation() {
-                if (head == null) {
-                    System.out.println("No conversation to display.");
-                    return;
-                }
-                Node current = head;
-                int lineNumber = 1;
-                while (current != null) {
-                    System.out.println(lineNumber + ". " + current.message);
-                    current = current.next;
-                    lineNumber++;
-                }
-            }
+            current.next = newNode;
+        }
+    }
+    // Display the trait in order
+    public void displayTrait() {
+        if (head == null) {
+            System.out.println("No conversation to display.");
+            return;
+        }
+        Node current = head;
+        int lineNumber = 1;
+        while (current != null) {
+            System.out.println(lineNumber + ". " + current.trait);
+            current = current.next;
+            lineNumber++;
         }
     }
 }

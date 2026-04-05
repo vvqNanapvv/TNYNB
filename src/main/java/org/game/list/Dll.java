@@ -1,27 +1,26 @@
-package org.example.linkedlist;
+package org.game.list;
 
-import org.example.Human;
-class Node {
+class DllNode {
     int score;
-    Node prev, next;
+    DllNode prev, next;
 
-    public Node(int score) {
+    public DllNode(int score) {
         this.score = score;
     }
 }
 
 public class Dll {
-    Node head;
+    DllNode head;
 
     public void add(int score) {
-        Node newNode = new Node(score);
+        DllNode newNode = new DllNode(score);
 
         if (head == null) {
             head = newNode;
             return;
         }
 
-        Node cur = head;
+        DllNode cur = head;
         while (cur.next != null) {
             cur = cur.next;
         }
@@ -31,7 +30,7 @@ public class Dll {
     }
 
     public void print() {
-        Node cur = head;
+        DllNode cur = head;
         while (cur != null) {
             System.out.print(cur.score + " <-> ");
             cur = cur.next;
@@ -39,4 +38,3 @@ public class Dll {
         System.out.println("null");
     }
 }
-

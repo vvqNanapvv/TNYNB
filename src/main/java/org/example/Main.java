@@ -8,22 +8,32 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
-        Human[] people = new Human[5];
         Attribute att = new Attribute();
+        Script mss = new Script ();
+
         Cll action = new Cll();
         Sll line = new Sll();
-        Dll data = new Dll("",45);
-        Deque<Human> q = new ArrayDeque<>(5);
+
+        Queue<Human> q = new ArrayDeque<>(5);
         Stack<Human> p = new Stack<>();
 
+        // Traits
+        line.addMessage(mss.mss_1[rand.nextInt(mss.mss_1.length)]);
+
+
         // Neighbors
-        Human John = new Human("John Smith",
-                att.Identity[rand.nextInt(att.Identity.length)],
-                att.Mouth[rand.nextInt(att.Mouth.length)],
-                att.Eye[rand.nextInt(att.Eye.length)],
-                att.Hair[rand.nextInt(att.Hair.length)],
-                att.Id_card[rand.nextInt(att.Id_card.length)],
-                att.Phone_call[rand.nextInt(att.Phone_call.length)]);
+        Human John = new Human("John Smith", att.Identity[rand.nextInt(att.Identity.length)]);
+        if (John.getIdentity().equals("true")) {
+            John.setMouth(att.Mouth[rand.nextInt(att.Mouth.length)]);
+            John.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
+            John.setHair(att.Hair[rand.nextInt(att.Hair.length)]);
+            John.setPhone_call(att.Phone_call[0]);
+        }else{
+            John.setMouth(att.alienMouth[rand.nextInt(att.alienMouth.length)]);
+            John.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
+            John.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);
+            John.setPhone_call(att.Phone_call[rand.nextInt(att.Phone_call.length)]);
+        }   John.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
 
         Human Jane = new Human("Jane Skyler", att.Identity[rand.nextInt(att.Identity.length)]);
         if (Jane.getIdentity().equals("true")) {
@@ -52,22 +62,21 @@ public class Main {
         }   Kate.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
 
         // Neighbor Line
+        q.add(John);
+        q.add(Jane);
+        q.add(Kate);
+        q = shuffleQueue(q);
+        Queue<Human> shuffleQ = q;
 
-        int position = 0;
-        people[0] = John;
-        people[1] = Jane;
-        people[2] = Kate;
-        q.add(people[0]);
-        q.add(people[1]);
-        q.add(people[2]);
-
+        Human[] people = {shuffleQ.poll(), shuffleQ.poll(),shuffleQ.poll()};
 
         // Actions
-        action.append("Check",() -> Action.Check(people[position]));
-        action.append("Id-Card",() -> Action.Id_card(people[position]));
-        action.append("Phone-Call",() -> Action.PhoneCall(people[position]));
-        action.append("Gate",() -> Action.Gate(q,p));
-        action.append("Queue",() -> Action.Queue(q));
+        action.append("Check",() -> Action.Check(people[0]));
+        action.append("Talk", line::displayTrait);
+        action.append("Id-Card",() -> Action.Id_card(people[0]));
+        action.append("Phone-Call",() -> Action.PhoneCall(people[0]));
+        action.append("Gate",() -> Action.Gate(shuffleQ,p));
+        action.append("Queue",() -> Action.Queue(shuffleQ));
 
         // Gameplay window
         while (!q.isEmpty()) {
@@ -106,12 +115,26 @@ public class Main {
         // Check condition to win
         for (int i = p.size() - 1; i >= 0; i--) {
             int y=0;
-            if(p.get(i).getIdentity() == "false"){
+            if(Objects.equals(p.get(i).getIdentity(), "false")){
                 y++;
                 if(y>=2){
                     System.out.println("You have failed your neighbor :[");
                 }
             }
         }
+    }
+    public static <T> Queue<T> shuffleQueue(Queue<T> queue) {
+        if (queue == null || queue.isEmpty()) {
+            return new LinkedList<>();
+        }
+
+        // Convert queue to list
+        List<T> list = new ArrayList<>(queue);
+
+        // Shuffle the list
+        Collections.shuffle(list);
+
+        // Create a new queue from the shuffled list
+        return new LinkedList<>(list);
     }
 }

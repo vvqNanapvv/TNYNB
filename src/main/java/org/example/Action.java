@@ -16,7 +16,7 @@ public class Action {
         };
     }
     //Open or Close then return Human to the stack
-    public static void Gate(Deque<Human> q,Stack<Human> p) {
+    public static void Gate(Queue<Human> q,Stack<Human> p) {
         Object b = Door();
         if (b == null) {
             System.out.println("ERROR: INVALID GATE");
@@ -81,7 +81,7 @@ public class Action {
         }
     }
 
-    public static void Queue(Deque<Human> q) {
+    public static void Queue(Queue<Human> q) {
         for (Human human : q) {
             System.out.println(human.getName());
         }
