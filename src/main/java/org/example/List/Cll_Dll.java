@@ -1,7 +1,7 @@
 package org.example.List;
 
-//For Circling actions and Execute
-public class Cll {
+//Dynamic Circling actions and Execute
+public class Cll_Dll {
     private static class Node {
         String methodName;
         Runnable task; // Store a method as Runnable

@@ -9,9 +9,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Script mss = new Script ();
 
-        Cll action = new Cll();
+        Cll_Dll action = new Cll_Dll();
         Sll log = new Sll();
-        Dll scoreList = new Dll();
 
         // Neighbor/Alein
         ArrayList<Person> humans = new ArrayList<>();
@@ -116,7 +115,6 @@ public class Main {
                             person = queue.poll();
                             log.add(person.getName() + " is a " + Action.Species(person));
                             round++;
-                            scoreList.add(score);
                         }
                         break;
                     case "quit":
@@ -138,9 +136,6 @@ public class Main {
             System.out.println("Final Score: " + score);
             System.out.println("\nLog:");
             log.print();
-
-            System.out.println("\nScore History:");
-            scoreList.printAll();
             System.out.println("\n=================");
             System.out.println("Want to play again?");
             if (sc.hasNextLine()) {
