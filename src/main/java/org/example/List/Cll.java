@@ -6,43 +6,41 @@ public class Cll {
         String methodName;
         Runnable task; // Store a method as Runnable
         Node next;
+        Node prev;
 
         public Node(String methodName, Runnable task) {
             this.methodName = methodName;
             this.task = task;
             this.next = null;
+            this.prev = null;
         }
     }
 
     private Node head = null;
 
-    // Rotate the head by 'positions' steps, In this case is always "1"
-    public void rotate(int positions) {
-        if (head == null || head.next == head || positions <= 0) {
-            return; // Nothing to rotate
-        }
-        Node temp = head;
-        for (int i = 0; i < positions; i++) {
-            temp = temp.next;
-        }
-        head = temp; // Move head to the new position
+    // Rotate the head to the next or back
+    public void next() {
+        head = head.next;
+        System.out.println();
+    }
+    public void back() {
+        head = head.prev;
         System.out.println();
     }
 
-    // Method to append a Method()
+    // Method to append a Method() also Circular link & Double link
     public void append(String methodName, Runnable task) {
         Node newNode = new Node(methodName, task);
         if (head == null) {
             head = newNode;
-            head.next = head; // Circular link to itself
-            return;
+            head.next = head.prev = head; // Circular link
+        } else {
+            Node tail = head.prev;
+            tail.next = newNode;
+            newNode.prev = tail;
+            newNode.next = head;
+            head.prev = newNode;
         }
-        Node current = head;
-        while (current.next != head) {
-            current = current.next;
-        }
-        current.next = newNode;
-        newNode.next = head; // Circular link
     }
     // Get Method's name
     public String methodName() {

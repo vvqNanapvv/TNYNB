@@ -1,5 +1,7 @@
 package org.example.Neighbor;
 
+import org.example.Script;
+
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -73,7 +75,7 @@ public class Person {
                 fakeMouth = getDifferent(mouths, mouth);
             } else if (wrong == 3) {
                 fakeSkin = getDifferent(skins, skin);
-            } else if (wrong == 4) {
+            } else {
                 fakeID = getDifferent(ID_card, id_card);
             }
 
@@ -111,7 +113,12 @@ public class Person {
     public String getIdCard() {
         return id_card;
     }
-    public IDCard getId() {
-        return id;
+    public String[] getScript_H() {
+        return new String[]{Script.getScript_H()[r.nextInt(Script.getScript_H().length)]};
+    }
+    public String[] getScript_A() {
+        return new String[]{Script.getScript_A()[r.nextInt(Script.getScript_A().length)]};
+    }
+    public IDCard getId() {return id;
     }
 }

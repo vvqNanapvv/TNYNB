@@ -46,13 +46,13 @@ public class Action {
 
         while (true) {
             System.out.println("\n--- Check? ---");
-            System.out.println("ID Document: Document");
-            System.out.println("1. Check Mouth: Mouth");
-            System.out.println("2. Check Eye: Eye");
-            System.out.println("3. Check Hair: Hair");
-            System.out.println("4. Check Skin: Skin");
-            System.out.println("5. Id Number: ID");
-            System.out.println("6. Return");
+            System.out.println("1. Check Official Document: Document");
+            System.out.println("2. Check Mouth: Mouth");
+            System.out.println("3. Check Eye: Eye");
+            System.out.println("4. Check Hair: Hair");
+            System.out.println("5. Check Skin: Skin");
+            System.out.println("6. Id Number: ID");
+            System.out.println("7. Return");
             System.out.print("\nEnter choice by name: ");
 
             String choice;
@@ -87,6 +87,14 @@ public class Action {
             System.out.println("📞 Someone picked up!");
         } else {
             System.out.println("📞 No answer...");
+        }
+    }
+    // Return random script
+    public static void Talk(Person person) {
+        if (person.isHuman()) {
+            System.out.println(Arrays.toString(person.getScript_H()));
+        }else  {
+            System.out.println(Arrays.toString(person.getScript_A()));
         }
     }
     // Show full document

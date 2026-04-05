@@ -1,5 +1,7 @@
 package org.example.Neighbor;
 
+import org.example.Script;
+
 public class IDCard {
     String name;
     String hair;
@@ -8,7 +10,7 @@ public class IDCard {
     String skin;
     String id_number;
 
-    public IDCard(String name, String hair, String eyes, String mouth, String skin,String id_number) {
+    public IDCard(String name, String hair, String eyes, String mouth, String skin, String id_number) {
         this.name = name;
         this.hair = hair;
         this.eyes = eyes;

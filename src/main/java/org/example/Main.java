@@ -50,28 +50,30 @@ public class Main {
         int alienPassed = 0;
         int round = 1;
         boolean play = true;
+
+        // People queue
+        Person person = queue.peek();
+        // Actions
+        Person P = person;
+        action.append("Check",() -> Action.Check(P));
+        action.append("Talk",() -> Action.Talk(P));
+        action.append("House Call",() -> Action.Call(P));
+        action.append("Gate", () -> Action.Gate(P));
+        action.append("Queue", () -> Action.Queue(queue));
+
         // Play AGAIN?
         while(play){
             // Gameplay window
             while (!queue.isEmpty()) {
-                // People queue
-                Person person = queue.peek();
-                // Actions
-                Person P = person;
-                action.append("Check",() -> Action.Check(P));
-                action.append("Full ID_Document",() -> Action.showDoc(P));
-                action.append("House Call",() -> Action.Call(P));
-                action.append("Gate", () -> Action.Gate(P));
-                action.append("Queue", () -> Action.Queue(queue));
-
                 System.out.println("\n=================");
                 System.out.println("Round: " + round + "/5");
                 Action.showDoc(person);
 
                 System.out.println("\n--- Action Menu ---");
                 System.out.println("1. Next");
-                System.out.println("2. Act");
-                System.out.println("3. Quit");
+                System.out.println("2. Back");
+                System.out.println("3. Act");
+                System.out.println("4. Quit");
                 System.out.println("\nAction: " + action.methodName());
                 System.out.print("\nEnter choice by name: ");
 
@@ -85,20 +87,23 @@ public class Main {
 
                 switch (choice.toLowerCase()) {
                     case "next":
-                        action.rotate(1);
+                        action.next();
+                        break;
+                    case "back":
+                        action.back();
                         break;
                     case "act":
                         System.out.println("Execute: " + action.methodName());
                         action.executeAt();
-                        try {
-                            // Pause for 3 seconds
-                            System.out.println("Starting...");
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            // If were to interrupted
-                            System.err.println();
-                            Thread.currentThread().interrupt(); // Restore interrupt status
-                        }
+                            try {
+                                // Pause for 2.5 seconds
+                                System.out.println("Starting...");
+                                Thread.sleep(2500);
+                            } catch (InterruptedException e) {
+                                // If were to interrupted
+                                System.err.println();
+                                Thread.currentThread().interrupt(); // Restore interrupt status
+                            }
                         System.out.println();
                         if (action.methodName().equals("Gate")) {
                             // keep track of human and alien :>
@@ -111,6 +116,7 @@ public class Main {
                             person = queue.poll();
                             log.add(person.getName() + " is a " + Action.Species(person));
                             round++;
+                            scoreList.add(score);
                         }
                         break;
                     case "quit":
@@ -121,7 +127,6 @@ public class Main {
                     default:
                         System.out.println("ERROR: Invalid input.");
                 }
-                scoreList.add(score);
             }
             System.out.println("\n=================");
             if (alienPassed==0 && round > 5) {

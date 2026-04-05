@@ -14,7 +14,6 @@ public class  Dll {
 
     public void add(int score) {
         Node newNode = new Node(score);
-
         if (head == null) {
             head = newNode;
             return;
