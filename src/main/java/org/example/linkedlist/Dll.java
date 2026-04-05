@@ -3,43 +3,46 @@ package org.example.linkedlist;
 import org.example.Human;
 
 public class Dll {
-    private static class Node{
-        Human data;
-        Node next;
-        Node prev;
+    String name;
+    int age;
 
-        Node(Human human){
-            this.data = human;
-            this.next = null;
-            this.prev = null;
-        }
-        static class dll {
-            private Node head;
-            // Insert at the end
-            public void insertEnd(Human data) {
-                Node newNode = new Node(data);
-                if (head == null) {
-                    head = newNode;
-                    return;
-                }
-                Node temp = head;
-                while (temp.next != null) {
-                    temp = temp.next;
-                }
-                temp.next = newNode;
-                newNode.prev = temp;
-            }
-            // Insert at the front
-            public void insertFront(Human data) {
-                Node newNode = new Node(data);
-                if (head == null) {
-                    head = newNode;
-                    return;
-                }
-                newNode.next = head;
-                head.prev = newNode;
-                head = newNode;
-            }
+    public Dll(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+    // Node class for DLL
+    class Node {
+    Human data;
+    Node prev;
+    Node next;
+
+    public Node(Human data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+    // Doubly Linked List class
+    class dll {
+        private Node head;
+        private Node tail;
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    // Add node to the end of the list
+    public void addHuman(Human human) {
+        Node newNode = new Node(human);
+        if (isEmpty()) {
+            head = tail = newNode; // head is center
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail; // prev as left
+            tail = newNode;
         }
     }
 }
+

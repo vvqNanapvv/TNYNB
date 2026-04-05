@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.linkedlist.Sll;
-
 import java.util.*;
 
 public class Action {
@@ -18,34 +16,33 @@ public class Action {
         };
     }
     //Open or Close then return Human to the stack
-    public static Object Gate() {
+    public static void Gate(Deque<Human> q,Stack<Human> p) {
         Object b = Door();
         if (b == null) {
             System.out.println("ERROR: INVALID GATE");
-        }
-        else {
+        } else {
             if ((boolean) b){
                 System.out.println("Gate Open");
-                return true;
             }
             else{
                 System.out.println("Gate Closed");
-                return false;
             }
         }
-        return null;
+        p.push(q.poll());
     }
 
     public static void Check(Human h) {
         System.out.println("What do you want to do?");
 
         while (true) {
+            System.out.println(h.getName());
             System.out.println("\n--- Check? ---");
             System.out.println("1. Mouth");
             System.out.println("2. Eye");
             System.out.println("3. Hair");
             System.out.println("4. Exit");
-            System.out.print("Enter choice by name: ");
+            System.out.print("\nEnter choice by name: ");
+
 
             String choice;
             if (!sc.hasNextLine()) {
@@ -81,6 +78,12 @@ public class Action {
             System.out.println("ID card identify");
         }else  {
             System.out.println("ID card is faulty");
+        }
+    }
+
+    public static void Queue(Deque<Human> q) {
+        for (Human human : q) {
+            System.out.println(human.getName());
         }
     }
 }

@@ -5,63 +5,49 @@ import org.example.Human;
 // Neighbor line
 public class Sll {
     private static class Node {
-        int data;
+        String message;
         Node next;
-        Human human;
 
-        Node(int data, Human human) {
-            this.data = data;
+        Node(String message) {
+            this.message = message;
             this.next = null;
-            this.human = human;
         }
-    }
 
-    private Node front;
-    private Node rear;
-    // Constructor
-    public Sll() {
-        this.front = null;
-        this.rear = null;
-    }
-    // Enqueue: Add element to the rear
-    public void enqueue(int value, Human human) {
-        Node newNode = new Node(value,human);
-        if (rear == null) { // Queue is empty
-            front = rear = newNode;
-        } else {
-            rear.next = newNode;
-            rear = newNode;
+        class ConversationList {
+            private Node head;
+
+            // Add a new message to the end of the list
+            public void addMessage(String message) {
+                if (message == null || message.trim().isEmpty()) {
+                    System.out.println("Empty message ignored.");
+                    return;
+                }
+                Node newNode = new Node(message.trim());
+                if (head == null) {
+                    head = newNode;
+                } else {
+                    Node current = head;
+                    while (current.next != null) {
+                        current = current.next;
+                    }
+                    current.next = newNode;
+                }
+            }
+
+            // Display the conversation in order
+            public void displayConversation() {
+                if (head == null) {
+                    System.out.println("No conversation to display.");
+                    return;
+                }
+                Node current = head;
+                int lineNumber = 1;
+                while (current != null) {
+                    System.out.println(lineNumber + ". " + current.message);
+                    current = current.next;
+                    lineNumber++;
+                }
+            }
         }
-        System.out.println(value + " enqueued.");
-    }
-    // Dequeue: Remove element from the front
-    public Human dequeue() {
-        if (isEmpty()) {
-            throw new IllegalStateException("Queue is empty. Cannot dequeue.");
-        }
-        Node current = front;
-        front = front.next;
-        if (front == null) { // Queue became empty
-            rear = null;
-        }
-        return current.human;
-    }
-    // Check if the queue is empty
-    public boolean isEmpty() {
-        return front == null;
-    }
-    // Display all elements in the queue
-    public void display() {
-        if (isEmpty()) {
-            System.out.println("Queue is empty.");
-            return;
-        }
-        Node current = front;
-        System.out.print("Queue: ");
-        while (current != null) {
-            System.out.print(current.data + " ");
-            current = current.next;
-        }
-        System.out.println();
     }
 }

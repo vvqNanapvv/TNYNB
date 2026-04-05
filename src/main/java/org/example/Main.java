@@ -8,9 +8,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
+        Human[] people = new Human[5];
         Attribute att = new Attribute();
         Cll action = new Cll();
-        Sll queue = new Sll();
+        Sll line = new Sll();
+        Dll data = new Dll("",45);
+        Deque<Human> q = new ArrayDeque<>(5);
+        Stack<Human> p = new Stack<>();
 
         // Neighbors
         Human John = new Human("John Smith",
@@ -34,34 +38,39 @@ public class Main {
             Jane.setPhone_call(att.Phone_call[rand.nextInt(att.Phone_call.length)]);
         }   Jane.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
 
-
-        Human Kate = new Human("Kate Benjamin",
-                att.Identity[rand.nextInt(att.Identity.length)],
-                att.Mouth[rand.nextInt(att.Mouth.length)],
-                att.Eye[rand.nextInt(att.Eye.length)],
-                att.Hair[rand.nextInt(att.Hair.length)],
-                att.Id_card[rand.nextInt(att.Id_card.length)],
-                att.Phone_call[rand.nextInt(att.Phone_call.length)]);
+        Human Kate = new Human("Kate Benjamin", att.Identity[rand.nextInt(att.Identity.length)]);
+        if (Kate.getIdentity().equals("true")) {
+            Kate.setMouth(att.Mouth[rand.nextInt(att.Mouth.length)]);
+            Kate.setEye(att.Eye[rand.nextInt(att.Eye.length)]);
+            Kate.setHair(att.Hair[rand.nextInt(att.Hair.length)]);
+            Kate.setPhone_call(att.Phone_call[0]);
+        }else{
+            Kate.setMouth(att.alienMouth[rand.nextInt(att.alienMouth.length)]);
+            Kate.setEye(att.alienEye[rand.nextInt(att.alienEye.length)]);
+            Kate.setHair(att.alienHair[rand.nextInt(att.alienHair.length)]);
+            Kate.setPhone_call(att.Phone_call[rand.nextInt(att.Phone_call.length)]);
+        }   Kate.setId_card(att.Id_card[rand.nextInt(att.Id_card.length)]);
 
         // Neighbor Line
-        Human[] people = new Human[3];
-        int line = 0;
+
+        int position = 0;
         people[0] = John;
         people[1] = Jane;
         people[2] = Kate;
-        queue.enqueue(1,people[rand.nextInt(people.length)]);
-        queue.enqueue(2,people[rand.nextInt(people.length)]);
-        queue.enqueue(3,people[rand.nextInt(people.length)]);
+        q.add(people[0]);
+        q.add(people[1]);
+        q.add(people[2]);
+
 
         // Actions
-        action.append("Check",() -> Action.Check(people[line]));
-        action.append("Id-Card",() -> Action.Id_card(people[line]));
-        action.append("Phone-Call",() -> Action.PhoneCall(people[line]));
-        action.append("Queue", queue::display);
-        action.append("Gate", () -> Action.Gate());
+        action.append("Check",() -> Action.Check(people[position]));
+        action.append("Id-Card",() -> Action.Id_card(people[position]));
+        action.append("Phone-Call",() -> Action.PhoneCall(people[position]));
+        action.append("Gate",() -> Action.Gate(q,p));
+        action.append("Queue",() -> Action.Queue(q));
 
         // Gameplay window
-        while (!queue.isEmpty()) {
+        while (!q.isEmpty()) {
             System.out.println("\n--- Action Menu ---");
             System.out.println("1. Next: Action");
             System.out.println("2. Act");
@@ -83,7 +92,7 @@ public class Main {
                     break;
                 case "act":
                     System.out.println("Execute: " + action.methodName());
-                    System.out.println("");
+                    System.out.println();
                     action.executeAt();
                     break;
                 case "leave":
@@ -92,6 +101,16 @@ public class Main {
                     return;
                 default:
                     System.out.println("ERROR: Invalid input.");
+            }
+        }
+        // Check condition to win
+        for (int i = p.size() - 1; i >= 0; i--) {
+            int y=0;
+            if(p.get(i).getIdentity() == "false"){
+                y++;
+                if(y>=2){
+                    System.out.println("You have failed your neighbor :[");
+                }
             }
         }
     }
