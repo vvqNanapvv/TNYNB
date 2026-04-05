@@ -11,7 +11,7 @@ public class Main {
         Cll_Dll action = new Cll_Dll();
         Sll log = new Sll();
 
-        // Neighbor/Alein
+        // Neighbor/Alien
         ArrayList<Person> humans = new ArrayList<>();
         ArrayList<Person> aliens = new ArrayList<>();
 
@@ -22,7 +22,7 @@ public class Main {
         humans.add(new Person("David Tenseness", true));
 
         aliens.add(new Person("John Smith", false));
-        humans.add(new Person("Alice Sunday", false));
+        aliens.add(new Person("Alice Sunday", false));
         aliens.add(new Person("Mike Mikey", false));
         aliens.add(new Person("Sarah Kohlhase", false));
         aliens.add(new Person("David Tenseness", false));
